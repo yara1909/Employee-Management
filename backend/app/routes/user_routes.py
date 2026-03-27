@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends
+from fastapi.security import OAuth2PasswordRequestForm
 from app.schemas.user_schema import UserLogin, UserCreate
 from app.controller.user_controller import register_new_user, login_user
 from utils.utils import require_roles
@@ -13,7 +14,11 @@ def register(user_data:UserCreate):
 
 
 @router.post("/login")
-def login(user_data: UserLogin):
+def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    user_data = UserLogin(
+        username=form_data.username,
+        password=form_data.password
+    )
     return login_user(user_data)
 
 @router.get("/admin-dashboard", dependencies=[Depends(require_roles(["admin"]))])
