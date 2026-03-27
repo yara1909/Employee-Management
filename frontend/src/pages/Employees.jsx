@@ -91,7 +91,7 @@ export default function Employees() {
               style={{
               width: '100%',
               borderCollapse: 'collapse',
-              tableLayout: 'auto', // 👈 IMPORTANT (not fixed)
+              tableLayout: 'auto',
               }}
           >
             
@@ -134,7 +134,7 @@ export default function Employees() {
                           marginRight: 8,
                           cursor: 'pointer',
                         }}
-                        onClick={() => {/* handleEdit(emp) */}}
+                        onClick={() => navigate('/edit-employee')}
                       >
                         Edit
                       </button>
@@ -147,7 +147,7 @@ export default function Employees() {
                           padding: '6px 12px',
                           cursor: 'pointer',
                         }}
-                        onClick={() => {/* handleDelete(emp) */}}
+                        onClick={() => navigate('/delete-employee')}
                       >
                         Delete
                       </button>
